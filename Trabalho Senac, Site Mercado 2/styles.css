@@ -1,0 +1,323 @@
+/* =========================================================
+   SmartMarket — Controle Inteligente de Estoque
+   Autor: Leonardo da Costa Zainotte
+   Versão: 2.0
+   ========================================================= */
+
+/* ======= RESET ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+  height: 100%;
+}
+
+/* ======= CABEÇALHO ======= */
+header {
+  background: linear-gradient(90deg, #0d6efd, #2563eb);
+  color: #fff;
+  padding: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.6rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* ======= LAYOUT PRINCIPAL ======= */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ======= SEÇÕES ======= */
+section {
+  background: #fff;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+  transition: all 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-3px);
+}
+
+/* ======= TÍTULOS ======= */
+h2 {
+  color: #0d6efd;
+  margin-bottom: 1rem;
+  border-left: 4px solid #0d6efd;
+  padding-left: 0.5rem;
+  font-size: 1.3rem;
+}
+
+/* ======= FORMULÁRIO ======= */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #0d6efd;
+  outline: none;
+}
+
+button {
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #0d6efd;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #004bdb;
+}
+
+button.secondary {
+  background: #245c8d;
+}
+
+button.secondary:hover {
+  background: #565e64;
+}
+
+.actions button {
+  margin-right: 0.35rem;
+}
+
+/* ======= TABELAS ======= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+
+th, td {
+  padding: 0.8rem;
+  border: 1px solid #e6ecef;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+th {
+  background: #f1f5f9;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.desconto {
+  background: #fffbea;
+}
+
+td button {
+  font-size: 0.85rem;
+}
+
+/* ======= ALERTAS ======= */
+.alerta {
+  background: #fff3cd;
+  color: #856404;
+  padding: 0.7rem;
+  border-radius: 8px;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.alerta.vermelho {
+  background-color: #fde2e2;
+  color: #6b0b0b;
+}
+
+.alerta.verde {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+/* ======= TAGS DE DESCONTO ======= */
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-left: 0.4rem;
+  font-weight: 600;
+}
+
+.tag.off10 {
+  background: #fff1f0;
+  color: #c72525;
+}
+
+.tag.off20 {
+  background: #fff4e6;
+  color: #b45309;
+}
+
+.tag.off30 {
+  background: #fff7d6;
+  color: #6f3b00;
+}
+
+/* ======= DASHBOARD / RELATÓRIO ======= */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  padding: 1rem;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card h3 {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.card p {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+/* ======= CARROSSEL DE BANNERS ======= */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: none;
+  border-radius: 12px;
+}
+
+.carousel img.active {
+  display: block;
+}
+
+.carousel .btn-prev,
+.carousel .btn-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.carousel .btn-prev:hover,
+.carousel .btn-next:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.carousel .btn-prev {
+  left: 10px;
+}
+
+.carousel .btn-next {
+  right: 10px;
+}
+
+/* ======= RODAPÉ ======= */
+footer {
+  text-align: center;
+  background: #0d6efd;
+  color: white;
+  padding: 1rem;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* ======= RESPONSIVIDADE ======= */
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+  }
+
+  header {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  table, th, td {
+    font-size: 0.9rem;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel {
+    height: 160px;
+  }
+
+  .carousel img {
+    height: 160px;
+  }
+}
